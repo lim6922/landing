@@ -6,32 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Workspace Apps</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" media="print"
+        onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
+    </noscript>
 
     <style>
-        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-
         :root {
             --primary: #4f46e5;
             --primary-light: #818cf8;
             --accent: #0ea5e9;
             --bg: #f8fafc;
-            --glass: rgba(255, 255, 255, 0.7);
-            --glass-strong: rgba(255, 255, 255, 0.9);
+            --glass: rgba(255, 255, 255, 0.92);
+            --glass-strong: rgba(255, 255, 255, 0.96);
             --text-main: #0f172a;
             --text-mute: #64748b;
             --text-dim: #94a3b8;
             --border: rgba(15, 23, 42, 0.06);
-            --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.05);
-            --shadow-md: 0 12px 24px rgba(15, 23, 42, 0.08);
-            --shadow-lg: 0 24px 48px rgba(15, 23, 42, 0.12);
+            --shadow-sm: 0 3px 10px rgba(15, 23, 42, 0.04);
+            --shadow-md: 0 8px 18px rgba(15, 23, 42, 0.06);
+            --shadow-lg: 0 16px 30px rgba(15, 23, 42, 0.1);
             --card-radius: 24px;
             --max-w: 1240px;
         }
 
         * {
             box-sizing: border-box;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         html,
@@ -55,6 +59,19 @@
             text-decoration: none;
         }
 
+        .btn,
+        .app-card,
+        .tag,
+        .close-btn,
+        .modal-card {
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         .page {
             min-height: 100vh;
             padding: 32px 20px;
@@ -68,8 +85,6 @@
         /* [1단] Header & Hero - 더 세련된 Glassmorphism */
         .header-section {
             background: var(--glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: 32px;
             padding: 32px 40px;
@@ -138,8 +153,6 @@
         /* [2단] Apps Section - 컨테이너 자체의 완성도 */
         .apps-section {
             background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 32px;
             padding: 32px 22px;
@@ -179,11 +192,14 @@
             gap: 18px;
             position: relative;
             overflow: hidden;
+            height: 100%;
+            content-visibility: auto;
+            contain-intrinsic-size: 320px;
         }
 
         .app-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
             border-color: rgba(79, 70, 229, 0.2);
         }
 
@@ -225,6 +241,7 @@
             display: flex;
             flex-direction: column;
             gap: 14px;
+            flex: 1;
         }
 
         .card-summary {
@@ -255,6 +272,7 @@
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
+            margin-top: auto;
         }
 
         .tag {
@@ -270,6 +288,8 @@
             display: flex;
             gap: 10px;
             margin-top: 4px;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         /* Buttons */
@@ -298,7 +318,7 @@
 
         .btn.primary:hover {
             background: #4338ca;
-            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.22);
         }
 
         .btn.ghost {
@@ -320,7 +340,6 @@
             margin-top: 36px;
             padding: 32px 40px;
             background: var(--glass);
-            backdrop-filter: blur(10px);
             border-radius: 32px;
             display: flex;
             justify-content: space-between;
@@ -345,8 +364,7 @@
         .modal-backdrop {
             position: fixed;
             inset: 0;
-            background: rgba(15, 23, 42, 0.4);
-            backdrop-filter: blur(12px);
+            background: rgba(15, 23, 42, 0.52);
             display: none;
             align-items: center;
             justify-content: center;
@@ -388,6 +406,21 @@
 
         .close-btn:hover {
             background: #e2e8f0;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .btn,
+            .app-card,
+            .tag,
+            .close-btn,
+            .modal-card {
+                transition: none;
+            }
+
+            .app-card:hover,
+            .btn:active {
+                transform: none;
+            }
         }
 
         .modal-header {
@@ -533,7 +566,7 @@
                     <div class="nav-links">
                         <a class="btn ghost slim" href="https://github.com/" target="_blank"><i
                                 class="ri-github-fill"></i> GitHub</a>
-                        <a class="btn ghost slim" href="#"><i class="ri-article-line"></i> Blog</a>
+                        <a class="btn ghost slim" href="https://portfolio-dashboard.supreme6922.workers.dev/" target="_blank"><i class="ri-article-line"></i> Blog</a>
                     </div>
                 </nav>
                 <div class="hero-content">
